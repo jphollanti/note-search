@@ -15,14 +15,14 @@ def main(find):
     with open(notes) as fp:
         section = ''
         line = fp.readline()
-        do_print = False
+        do_print = find is None  # find nothing, print all
         while line:
             if line.startswith('# '):
                 if do_print:
                     print(section)
-                do_print = False
+                do_print = find is None  # find nothing, print all
 
-            if find.lower() in line.lower():
+            if find and find.lower() in line.lower():
                 idx = line.lower().find(find.lower())
                 while idx > -1:
                     p1 = line[:idx]
@@ -48,6 +48,8 @@ def main(find):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        raise Exception("Requires search parameter: ns <search for>")
-    main(sys.argv[1])
+    print('')
+    find = None
+    if len(sys.argv) > 1:
+        find = sys.argv[1]
+    main(find)
