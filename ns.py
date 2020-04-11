@@ -96,6 +96,7 @@ def main(find):
         print('Legend:')
         for key, value in used_colors.items():
             print(' ' + key + '  ' + SECTION_NC + ' = ' + ', '.join([str(elem) for elem in value]))
+        print('')
 
 
 if __name__ == "__main__":
