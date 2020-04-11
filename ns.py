@@ -74,6 +74,9 @@ def main(find):
                         idx = line.lower().find(find.lower(), idx + len(find) + len(HL) + len(NC))
 
                     do_print = True
+                    if not found_something and not include_only:
+                        print(color + ' ' * 5 + identifier + ' ' * 5 + SECTION_NC)
+                        print(line_start)
                     found_something = True
 
                 if line.startswith('# '):
@@ -87,8 +90,11 @@ def main(find):
             if do_print:
                 print(section + line_start)
 
-        if found_something:
-            print(line_start)
+        # if found_something:
+        #     #print(line_start)
+        #     if not include_only:
+        #         print(color + ' ' * 15 + SECTION_NC)
+
             print('')
 
     if not include_only:
