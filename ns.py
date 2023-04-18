@@ -4,7 +4,19 @@ from colorama import Fore, Back
 from pathlib import Path
 import os
 
-notes = '/Users/juha/notebooks/'
+config = {}
+config_fn = os.path.expanduser('~') + '/.note-search.cfg'
+
+with open(config_fn) as f:
+    for line in f:
+        if line.startswith('#'):
+            continue
+        if '=' in line:
+            name, value = line.split('=', 1)
+            config[name.strip()] = value.strip()
+
+print("Using config: ")
+print(config) 
 
 colorama.init()
 SECTION = Back.LIGHTBLACK_EX
@@ -15,7 +27,7 @@ NC = Fore.RESET
 topic_colors = [Back.CYAN, Back.MAGENTA, Back.YELLOW, Back.GREEN, Back.BLUE]
 used_colors = {}
 
-ignore_dirs = ['template']
+ignore_dirs = config['IGNORE_DIRS'].split(',')
 include_only = None
 
 
@@ -35,7 +47,7 @@ def get_dirs(path):
 
 def main(find):
     color_i = -1
-    for path in Path(notes).glob('*/README.md'):
+    for path in Path(config['NOTES_DIR']).glob('*/README.md'):
         identifier = get_dirs(path)[-2]
         if identifier in ignore_dirs:
             continue
