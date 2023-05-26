@@ -120,11 +120,25 @@ def main(find):
 if __name__ == "__main__":
     print('')
     find = None
-    if len(sys.argv) > 1:
-        find = sys.argv[1]
+
+    aa = []
+
+    exclude_hush = True
+    for arg in sys.argv:
+        if arg == '+hush':
+            exclude_hush = False
+            break
+        else: 
+            aa.append(arg)
+    if exclude_hush:
+        ignore_dirs.append('hush')
+
+
+    if len(aa) > 1:
+        find = aa[1]
     # if len(sys.argv) > 2:
     #     for ignore in sys.argv[2:]:
     #         ignore_dirs.append(ignore)
-    if len(sys.argv) > 2:
-        include_only = sys.argv[2]
+    if len(aa) > 2:
+        include_only = aa[2]
     main(find)
