@@ -3,6 +3,8 @@ import colorama
 from colorama import Fore, Back
 from pathlib import Path
 import os
+import tempfile
+import base64
 
 config = {}
 config_fn = os.path.expanduser('~') + '/.note-search.cfg'
@@ -64,6 +66,16 @@ def main(find):
         line_start = color + ' ' + SECTION_NC + ' ' if not include_only else ''
         found_something = False
 
+        ## base64decode hush file, write to temp file, use that file instead
+        if identifier == 'hush':
+            with open(path) as f:
+                data = f.read()
+            clrtxt = base64.b64decode(data).decode("ascii")
+            fd, path2 = tempfile.mkstemp()
+            with os.fdopen(fd, 'w') as tmp:
+                tmp.write(clrtxt)
+            path = path2
+
         with open(path) as fp:
             section = ''
             line = fp.readline()
@@ -102,6 +114,10 @@ def main(find):
             if do_print:
                 print(section + line_start)
 
+        if identifier == 'hush':
+            # remove temp file
+            os.remove(path)
+        
         # if found_something:
         #     #print(line_start)
         #     if not include_only:
