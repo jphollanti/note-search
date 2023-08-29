@@ -70,7 +70,7 @@ def main(find):
         if identifier == 'hush':
             with open(path) as f:
                 data = f.read()
-            clrtxt = base64.b64decode(data).decode("ascii")
+            clrtxt = base64.b64decode(data).decode('utf-8')
             fd, path2 = tempfile.mkstemp()
             with os.fdopen(fd, 'w') as tmp:
                 tmp.write(clrtxt)
