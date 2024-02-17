@@ -10,7 +10,11 @@ CORS(app)  # Enable CORS
 
 
 config = {}
-config_fn = os.path.expanduser('~') + '/.note-search.cfg'
+
+if 'NOTES_CONFIG_FILE' in os.environ:
+    config_fn = os.environ['NOTES_CONFIG_FILE']
+else:
+    config_fn = os.path.expanduser('~') + '/.note-search.cfg'
 
 with open(config_fn) as f:
     for line in f:
@@ -19,6 +23,10 @@ with open(config_fn) as f:
         if '=' in line:
             name, value = line.split('=', 1)
             config[name.strip()] = value.strip()
+
+# override with env vars
+if 'NOTES_DIR' in os.environ:
+    config['NOTES_DIR'] = os.environ['NOTES_DIR']
 
 print("Using config: ")
 print(config) 
@@ -120,4 +128,4 @@ def __find(find):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3000)
+    app.run(host='0.0.0.0', debug=True, port=3000)

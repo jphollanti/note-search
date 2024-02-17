@@ -18,11 +18,11 @@
 <style>
   /* Add some basic styling (optional) */
   .search-result { margin-top: 20px; }
-  .search-content { margin: 0 10px; }
+  .search-content { margin: 0 10px; padding: 10px; background-color: #EEE;}
 </style>
 
 <div>
-  <input type="text" bind:value={searchQuery} placeholder="Search for a fruit...">
+  <input type="text" bind:value={searchQuery} placeholder="Search from notes...">
   <button on:click={filterItems}>Search</button>
 </div>
 
