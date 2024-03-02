@@ -1,6 +1,6 @@
 # Note search tool
 
-This tool allows you to search the notes you have been collecting. 
+This tool allows you to search the notes you have been collecting. I have been using this on macOS but this should work on Linux and possibly even Windows (warranty void).
 
 # Getting started
 
