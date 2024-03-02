@@ -34,9 +34,9 @@ The contents of the README files is expected to be markdown formatted. Each sect
 # Add note-search binary to path
 
 Run the following script: 
-"""
+```
 (echo; echo '# Add note-search binary to path') >> $HOME/.zshrc
 (echo 'export PATH=$PATH:~/w/note-search/bin/') >> $HOME/.zshrc
-"""
+```
 
-And restart shell. This assumes note-search is located in ~/w
+And restart shell. This example assumes `note-search` is located in `~/w`
