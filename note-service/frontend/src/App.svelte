@@ -1,11 +1,4 @@
 <script>
-  let items = [
-    { id: 1, name: "Apple" },
-    { id: 2, name: "Banana" },
-    { id: 3, name: "Cherry" },
-    { id: 4, name: "Date" },
-    { id: 5, name: "Elderberry" }
-  ];
   let searchQuery = "";
   let searchResults = [];
 
@@ -16,7 +9,6 @@
 </script>
 
 <style>
-  /* Add some basic styling (optional) */
   .search-result { margin-top: 20px; }
   .search-content { margin: 0 10px; padding: 10px; background-color: #EEE;}
 </style>
