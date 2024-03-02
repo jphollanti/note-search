@@ -40,3 +40,9 @@ Run the following script:
 ```
 
 And restart shell. This example assumes `note-search` is located in `~/w`
+
+# Run in the browser
+
+`note-service` directory contains a small web server. You can find a Makefile with instructions how to build a docker image and run it (not available in a docker registry anywhere yet). 
+
+The build requires NPM and Python and some libs that you'll need to install first.
